@@ -1,0 +1,28 @@
+spring:
+  application.name: spring-cloud-stream-kafka-communication
+  cloud:
+    function:
+      definition: consumer;producer
+    stream:
+      kafka:
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                value.serializer: id.my.hendisantika.cloudstream.dto.converters.MessageSerializer
+          consumer-in-0:
+            consumer:
+              configuration:
+                value.deserializer: id.my.hendisantika.cloudstream.dto.converters.MessageDeSerializer
+        binder:
+          brokers: localhost:9092
+
+      bindings:
+        producer-out-0:
+          destination: first-topic
+          producer:
+            useNativeEncoding: true # This enables using the custom serializer
+        consumer-in-0:
+          destination: first-topic
+          consumer:
+            use-native-decoding: true # This enables using the custom deserializer
