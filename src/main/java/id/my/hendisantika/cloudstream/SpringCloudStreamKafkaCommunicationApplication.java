@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Slf4j
 @EnableScheduling
@@ -16,6 +17,11 @@ public class SpringCloudStreamKafkaCommunicationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringCloudStreamKafkaCommunicationApplication.class, args);
+    }
+
+    @Bean
+    public Supplier<Message> producer() {
+        return () -> new Message(" yuji from Streams");
     }
 
     @Bean
